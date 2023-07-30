@@ -24,10 +24,10 @@ public class PlantManager : MonoBehaviour
     {
         GameObject addedScore = Instantiate(_addScoreVFX, transform.position, Quaternion.identity);
 
-        Transform scoreText = addedScore.transform.GetChild(0).GetChild(0);
+        Transform scoreText = addedScore.transform.GetChild(0);
 
         Vector3 spawnPosition = new Vector3(
-            scoreText.position.x + Random.Range(30, 60),
+            scoreText.position.x + Random.Range(1f, 2f),
             scoreText.position.y,
             scoreText.position.z
         );

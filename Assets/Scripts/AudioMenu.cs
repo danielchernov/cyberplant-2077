@@ -85,40 +85,34 @@ public class AudioMenu : MonoBehaviour
         switch (currentTrack)
         {
             case 0:
-                trackTitleText.text = "'Penguin Café Single'";
+                trackTitleText.text = "'Ay Amor!'";
                 break;
             case 1:
-                trackTitleText.text = "'Zopf: From the Colonies'";
+                trackTitleText.text = "'Abrázame'";
                 break;
             case 2:
-                trackTitleText.text = "'Zopf: Giles Farnaby's Dream'";
+                trackTitleText.text = "'Corazón'";
                 break;
             case 3:
-                trackTitleText.text = "'Pythagoras's Trousers'";
+                trackTitleText.text = "'No Tiene Caso'";
                 break;
             case 4:
-                trackTitleText.text = "'Salty Bean Fumble'";
+                trackTitleText.text = "'Algo en Común'";
                 break;
             case 5:
-                trackTitleText.text = "'Perpetuum Mobile'";
+                trackTitleText.text = "'Mis Lágrimas'";
                 break;
             case 6:
-                trackTitleText.text = "'Bean Fields'";
+                trackTitleText.text = "'No!'";
                 break;
             case 7:
-                trackTitleText.text = "'In The Back Of A Taxi'";
+                trackTitleText.text = "'Para que no me olvides'";
                 break;
             case 8:
-                trackTitleText.text = "'Dirt'";
+                trackTitleText.text = "'Ven Ven Ven'";
                 break;
             case 9:
-                trackTitleText.text = "'Paul's Dance'";
-                break;
-            case 10:
-                trackTitleText.text = "'Scherzo And Trio'";
-                break;
-            case 11:
-                trackTitleText.text = "'Music For A Found Harmonium'";
+                trackTitleText.text = "'Mate y Cumbia'";
                 break;
             default:
                 trackTitleText.text = "";

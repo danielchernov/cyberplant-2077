@@ -17,6 +17,9 @@ public class SeedManager : MonoBehaviour
     float _sunlightCost = 1;
 
     [SerializeField]
+    float _electricityCost = 1;
+
+    [SerializeField]
     AudioSource SFXaudioSource;
 
     [SerializeField]
@@ -25,14 +28,15 @@ public class SeedManager : MonoBehaviour
     void OnMouseDown()
     {
         if (
-            elementsManager.GetWaterValue() >= _waterCost
-            && elementsManager.GetSunglightValue() >= _sunlightCost
+            elementsManager.WaterCurrentValue >= _waterCost
+            && elementsManager.SunlightCurrentValue >= _sunlightCost
         )
         {
             plantManager.AddToScore();
             plantManager.SpawnScoreVFX();
             elementsManager.UseWater(_waterCost);
             elementsManager.UseSunlight(_sunlightCost);
+            elementsManager.UseElectricity(_electricityCost);
 
             SFXaudioSource.PlayOneShot(SFXaudioClip[Random.Range(0, SFXaudioClip.Length)], 1f);
         }
