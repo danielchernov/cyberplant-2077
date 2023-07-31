@@ -14,24 +14,91 @@ public class PlantManager : MonoBehaviour
     [SerializeField]
     GameObject _addScoreVFX;
 
-    public void AddToScore()
+    [SerializeField]
+    ElementsManager elementsManager;
+
+    [SerializeField]
+    AudioSource SFXaudioSource;
+
+    [SerializeField]
+    AudioClip[] SFXaudioClip;
+
+    public int GetScore()
     {
-        _score++;
+        return _score;
+    }
+
+    public void ClickSeed(
+        int amountToGain,
+        int sunlightCost,
+        int waterCost,
+        int electricityCost,
+        bool isClick
+    )
+    {
+        if (
+            elementsManager.WaterCurrentValue >= waterCost
+            && elementsManager.SunlightCurrentValue >= sunlightCost
+            && elementsManager.ElectricityCurrentValue >= electricityCost
+        )
+        {
+            AddToScore(amountToGain);
+            SpawnScoreVFX(amountToGain, isClick);
+            elementsManager.UseWater(waterCost);
+            elementsManager.UseSunlight(sunlightCost);
+            elementsManager.UseElectricity(electricityCost);
+
+            if (isClick)
+                SFXaudioSource.PlayOneShot(SFXaudioClip[Random.Range(0, SFXaudioClip.Length)], 1f);
+        }
+    }
+
+    public void AddToScore(int amountToAdd)
+    {
+        _score += amountToAdd;
         _scoreText.text = _score.ToString();
     }
 
-    public void SpawnScoreVFX()
+    public void SubstractFromScore(int amountToSubstract)
+    {
+        _score -= amountToSubstract;
+        _scoreText.text = _score.ToString();
+    }
+
+    public void SpawnScoreVFX(int amountToShow, bool isClick)
     {
         GameObject addedScore = Instantiate(_addScoreVFX, transform.position, Quaternion.identity);
 
-        Transform scoreText = addedScore.transform.GetChild(0);
+        TextMeshPro scoreText = addedScore.GetComponentInChildren<TextMeshPro>();
 
-        Vector3 spawnPosition = new Vector3(
-            scoreText.position.x + Random.Range(1f, 2f),
-            scoreText.position.y,
-            scoreText.position.z
-        );
+        scoreText.text = "+" + amountToShow;
 
-        scoreText.position = spawnPosition;
+        Vector3 spawnPosition;
+
+        if (isClick)
+        {
+            spawnPosition = new Vector3(
+                addedScore.transform.position.x + Random.Range(-1.5f, -2f),
+                addedScore.transform.position.y + Random.Range(0f, 0.5f),
+                addedScore.transform.position.z
+            );
+
+            scoreText.fontSize *= 1f;
+            scoreText.faceColor = new Color(0.2f, 0.2f, 0.2f, 1);
+            scoreText.outlineColor = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            spawnPosition = new Vector3(
+                addedScore.transform.position.x + Random.Range(1.5f, 2f),
+                addedScore.transform.position.y + Random.Range(0f, 0.5f),
+                addedScore.transform.position.z
+            );
+            scoreText.fontSize *= 0.8f;
+            scoreText.faceColor = new Color(0, 0, 0, 1);
+            scoreText.outlineColor = new Color(0.5f, 0.5f, 0.5f, 1);
+        }
+
+        addedScore.transform.position = spawnPosition;
     }
 }

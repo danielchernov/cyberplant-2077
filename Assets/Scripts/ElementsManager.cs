@@ -55,20 +55,29 @@ public class ElementsManager : MonoBehaviour
 
     public void AddWater(float waterAmount)
     {
-        WaterCurrentValue += waterAmount;
-        UpdateWaterUI();
+        if (WaterCurrentValue < WaterMaxValue)
+        {
+            WaterCurrentValue += waterAmount;
+            UpdateWaterUI();
+        }
     }
 
     public void AddSunlight(float sunlightAmount)
     {
-        SunlightCurrentValue += sunlightAmount;
-        UpdateSunlightUI();
+        if (SunlightCurrentValue < SunlightMaxValue)
+        {
+            SunlightCurrentValue += sunlightAmount;
+            UpdateSunlightUI();
+        }
     }
 
     public void AddElectricity(float electricityAmount)
     {
-        ElectricityCurrentValue += electricityAmount;
-        UpdateElectricityUI();
+        if (ElectricityCurrentValue < ElectricityMaxValue)
+        {
+            ElectricityCurrentValue += electricityAmount;
+            UpdateElectricityUI();
+        }
     }
 
     void UpdateWaterUI()
