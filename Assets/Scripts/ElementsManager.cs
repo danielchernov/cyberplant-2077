@@ -23,17 +23,17 @@ public class ElementsManager : MonoBehaviour
     [SerializeField]
     TextMeshPro _electricityText;
 
-    public float WaterMaxValue = 100;
+    public float WaterMaxValue = 1000;
 
-    public float WaterCurrentValue = 100;
+    public float WaterCurrentValue = 1000;
 
-    public float SunlightMaxValue = 100;
+    public float SunlightMaxValue = 1000;
 
-    public float SunlightCurrentValue = 100;
+    public float SunlightCurrentValue = 1000;
 
-    public float ElectricityMaxValue = 100;
+    public float ElectricityMaxValue = 1000;
 
-    public float ElectricityCurrentValue = 100;
+    public float ElectricityCurrentValue = 1000;
 
     public void UseWater(float waterAmount)
     {

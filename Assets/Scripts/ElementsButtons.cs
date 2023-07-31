@@ -5,10 +5,13 @@ using UnityEngine;
 public class ElementsButtons : MonoBehaviour
 {
     [SerializeField]
-    ElementsManager elementsManager;
+    ElementsManager _elementsManager;
 
     [SerializeField]
-    ParticleSystem holdVFX;
+    ParticleSystem _holdVFX;
+
+    [SerializeField]
+    Animator _colorCircle;
 
     [SerializeField]
     int _buttonNumber = 0;
@@ -20,11 +23,15 @@ public class ElementsButtons : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (_buttonNumber == 0 && elementsManager.WaterCurrentValue < elementsManager.WaterMaxValue)
+        if (
+            _buttonNumber == 0
+            && _elementsManager.SunlightCurrentValue < _elementsManager.SunlightMaxValue
+        )
         {
-            if (!holdVFX.isPlaying)
+            if (!_holdVFX.isPlaying)
             {
-                holdVFX.Play();
+                _holdVFX.Play();
+                _colorCircle.SetBool("FadeIn", true);
             }
 
             if (_timer < _timerDuration)
@@ -34,17 +41,18 @@ public class ElementsButtons : MonoBehaviour
             else if (_timer >= _timerDuration)
             {
                 _timer = 0;
-                elementsManager.AddWater(1);
+                _elementsManager.AddSunlight(1);
             }
         }
         else if (
             _buttonNumber == 1
-            && elementsManager.SunlightCurrentValue < elementsManager.SunlightMaxValue
+            && _elementsManager.WaterCurrentValue < _elementsManager.WaterMaxValue
         )
         {
-            if (!holdVFX.isPlaying)
+            if (!_holdVFX.isPlaying)
             {
-                holdVFX.Play();
+                _holdVFX.Play();
+                _colorCircle.SetBool("FadeIn", true);
             }
 
             if (_timer < _timerDuration)
@@ -54,17 +62,18 @@ public class ElementsButtons : MonoBehaviour
             else if (_timer >= _timerDuration)
             {
                 _timer = 0;
-                elementsManager.AddSunlight(1);
+                _elementsManager.AddWater(1);
             }
         }
         else if (
             _buttonNumber == 2
-            && elementsManager.ElectricityCurrentValue < elementsManager.ElectricityMaxValue
+            && _elementsManager.ElectricityCurrentValue < _elementsManager.ElectricityMaxValue
         )
         {
-            if (!holdVFX.isPlaying)
+            if (!_holdVFX.isPlaying)
             {
-                holdVFX.Play();
+                _holdVFX.Play();
+                _colorCircle.SetBool("FadeIn", true);
             }
 
             if (_timer < _timerDuration)
@@ -74,12 +83,13 @@ public class ElementsButtons : MonoBehaviour
             else if (_timer >= _timerDuration)
             {
                 _timer = 0;
-                elementsManager.AddElectricity(1);
+                _elementsManager.AddElectricity(1);
             }
         }
         else
         {
-            holdVFX.Stop();
+            _holdVFX.Stop();
+            _colorCircle.SetBool("FadeIn", false);
         }
     }
 
@@ -87,9 +97,10 @@ public class ElementsButtons : MonoBehaviour
     {
         _timer = 0;
 
-        if (holdVFX.isPlaying)
+        if (_holdVFX.isPlaying)
         {
-            holdVFX.Stop();
+            _holdVFX.Stop();
+            _colorCircle.SetBool("FadeIn", false);
         }
     }
 }
