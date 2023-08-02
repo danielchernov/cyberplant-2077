@@ -23,17 +23,101 @@ public class ElementsManager : MonoBehaviour
     [SerializeField]
     TextMeshPro _electricityText;
 
-    public float WaterMaxValue = 1000;
+    [SerializeField]
+    Animator[] trianglesAnimator;
 
-    public float WaterCurrentValue = 1000;
+    [SerializeField]
+    SpriteRenderer[] trianglesRenderer;
 
-    public float SunlightMaxValue = 1000;
+    public float WaterMaxValue = 500;
 
-    public float SunlightCurrentValue = 1000;
+    public float WaterCurrentValue = 500;
 
-    public float ElectricityMaxValue = 1000;
+    public float SunlightMaxValue = 500;
 
-    public float ElectricityCurrentValue = 1000;
+    public float SunlightCurrentValue = 500;
+
+    public float ElectricityMaxValue = 500;
+
+    public float ElectricityCurrentValue = 500;
+
+    void Update()
+    {
+        if (SunlightCurrentValue < SunlightMaxValue * 0.2f)
+        {
+            trianglesAnimator[0].gameObject.SetActive(true);
+            trianglesRenderer[0].color = new Color(1, 1, 1, 1);
+        }
+        else if (SunlightCurrentValue < SunlightMaxValue * 0.4f)
+        {
+            trianglesAnimator[0].gameObject.SetActive(true);
+            trianglesRenderer[0].color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+        }
+        else if (SunlightCurrentValue < SunlightMaxValue * 0.6f)
+        {
+            trianglesAnimator[0].gameObject.SetActive(true);
+            trianglesRenderer[0].color = new Color(0.4f, 0.4f, 0.4f, 0.4f);
+        }
+        else if (SunlightCurrentValue < SunlightMaxValue * 0.8f)
+        {
+            trianglesAnimator[0].gameObject.SetActive(true);
+            trianglesRenderer[0].color = new Color(0.25f, 0.25f, 0.25f, 0.25f);
+        }
+        else
+        {
+            trianglesAnimator[0].gameObject.SetActive(false);
+        }
+
+        if (WaterCurrentValue < WaterMaxValue * 0.2f)
+        {
+            trianglesAnimator[1].gameObject.SetActive(true);
+            trianglesRenderer[1].color = new Color(1, 1, 1, 1);
+        }
+        else if (WaterCurrentValue < WaterMaxValue * 0.4f)
+        {
+            trianglesAnimator[1].gameObject.SetActive(true);
+            trianglesRenderer[1].color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+        }
+        else if (WaterCurrentValue < WaterMaxValue * 0.6f)
+        {
+            trianglesAnimator[1].gameObject.SetActive(true);
+            trianglesRenderer[1].color = new Color(0.4f, 0.4f, 0.4f, 0.4f);
+        }
+        else if (WaterCurrentValue < WaterMaxValue * 0.8f)
+        {
+            trianglesAnimator[1].gameObject.SetActive(true);
+            trianglesRenderer[1].color = new Color(0.25f, 0.25f, 0.25f, 0.25f);
+        }
+        else
+        {
+            trianglesAnimator[1].gameObject.SetActive(false);
+        }
+
+        if (ElectricityCurrentValue < ElectricityMaxValue * 0.2f)
+        {
+            trianglesAnimator[2].gameObject.SetActive(true);
+            trianglesRenderer[2].color = new Color(1, 1, 1, 1);
+        }
+        else if (ElectricityCurrentValue < ElectricityMaxValue * 0.4f)
+        {
+            trianglesAnimator[2].gameObject.SetActive(true);
+            trianglesRenderer[2].color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+        }
+        else if (ElectricityCurrentValue < ElectricityMaxValue * 0.6f)
+        {
+            trianglesAnimator[2].gameObject.SetActive(true);
+            trianglesRenderer[2].color = new Color(0.4f, 0.4f, 0.4f, 0.4f);
+        }
+        else if (ElectricityCurrentValue < ElectricityMaxValue * 0.8f)
+        {
+            trianglesAnimator[2].gameObject.SetActive(true);
+            trianglesRenderer[2].color = new Color(0.25f, 0.25f, 0.25f, 0.25f);
+        }
+        else
+        {
+            trianglesAnimator[2].gameObject.SetActive(false);
+        }
+    }
 
     public void UseWater(float waterAmount)
     {

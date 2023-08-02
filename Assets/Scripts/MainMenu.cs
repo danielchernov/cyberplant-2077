@@ -35,4 +35,14 @@ public class MainMenu : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public void TextFadeIn(Animator animator)
+    {
+        animator.SetBool("fadeIn", true);
+    }
+
+    public void TextFadeOut(Animator animator)
+    {
+        animator.SetBool("fadeIn", false);
+    }
 }
