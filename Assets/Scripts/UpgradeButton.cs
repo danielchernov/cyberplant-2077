@@ -19,6 +19,15 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField]
     TextMeshPro costText;
 
+    [SerializeField]
+    Animator upgradeNameAnimator;
+
+    [SerializeField]
+    TextMeshPro upgradeName;
+
+    [SerializeField]
+    string upgradeNameToAdd = "Default Upgrade";
+
     Animator buttonAnimator;
     SpriteRenderer priceColor;
 
@@ -42,13 +51,21 @@ public class UpgradeButton : MonoBehaviour
         }
 
         buttonAnimator.SetBool("isHovering", true);
+        upgradeNameAnimator.SetBool("isActive", true);
         costText.text = price.ToString();
+        upgradeName.text = upgradeNameToAdd;
+
+        CursorChanger.Instance.ChangeCursorHand();
     }
 
     private void OnMouseExit()
     {
         buttonAnimator.SetBool("isHovering", false);
+        upgradeNameAnimator.SetBool("isActive", false);
+
         costText.text = "";
+
+        CursorChanger.Instance.ChangeCursorArrow();
     }
 
     private void OnMouseDown()

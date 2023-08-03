@@ -6,6 +6,11 @@ public class DropdownDeactivator : MonoBehaviour
 {
     public Collider2D[] colliders;
 
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void DeactivateDropdown()
     {
         gameObject.SetActive(false);

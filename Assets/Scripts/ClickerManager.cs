@@ -32,6 +32,12 @@ public class ClickerManager : MonoBehaviour
     [SerializeField]
     int _electricityCost = 1;
 
+    [SerializeField]
+    int _amountToAddElementClicker = 1;
+
+    [SerializeField]
+    int _amountToAddSeedClicker = 1;
+
     float clickTimer = 0;
     float timeBetweenClicks = 1f;
 
@@ -47,7 +53,13 @@ public class ClickerManager : MonoBehaviour
             case 0:
                 if (clickTimer >= (timeBetweenClicks / clickerAmount))
                 {
-                    plantManager.ClickSeed(2, _sunlightCost, _waterCost, _electricityCost, false);
+                    plantManager.ClickSeed(
+                        _amountToAddSeedClicker,
+                        _sunlightCost,
+                        _waterCost,
+                        _electricityCost,
+                        false
+                    );
 
                     clickTimer = 0;
                 }
@@ -56,7 +68,7 @@ public class ClickerManager : MonoBehaviour
             case 1:
                 if (clickTimer >= (timeBetweenClicks / clickerAmount))
                 {
-                    elementsManager.AddSunlight(1);
+                    elementsManager.AddSunlight(_amountToAddElementClicker);
 
                     clickTimer = 0;
                 }
@@ -64,7 +76,7 @@ public class ClickerManager : MonoBehaviour
             case 2:
                 if (clickTimer >= (timeBetweenClicks / clickerAmount))
                 {
-                    elementsManager.AddWater(1);
+                    elementsManager.AddWater(_amountToAddElementClicker);
 
                     clickTimer = 0;
                 }
@@ -72,7 +84,7 @@ public class ClickerManager : MonoBehaviour
             case 3:
                 if (clickTimer >= (timeBetweenClicks / clickerAmount))
                 {
-                    elementsManager.AddElectricity(1);
+                    elementsManager.AddElectricity(_amountToAddElementClicker);
 
                     clickTimer = 0;
                 }
@@ -95,5 +107,15 @@ public class ClickerManager : MonoBehaviour
         {
             clickerUpgradeButton.SetActive(false);
         }
+    }
+
+    public void MultiplyAmountToAddSeedClicker(float multiplier)
+    {
+        _amountToAddSeedClicker = (int)Mathf.Round(_amountToAddSeedClicker * multiplier);
+    }
+
+    public void MultiplyAmountToAddElementClicker(float multiplier)
+    {
+        _amountToAddElementClicker = (int)Mathf.Round(_amountToAddElementClicker * multiplier);
     }
 }

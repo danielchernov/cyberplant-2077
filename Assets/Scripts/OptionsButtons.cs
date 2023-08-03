@@ -23,11 +23,13 @@ public class OptionsButtons : MonoBehaviour
     private void OnMouseEnter()
     {
         buttonAnimator.SetBool("isHovering", true);
+        CursorChanger.Instance.ChangeCursorHand();
     }
 
     private void OnMouseExit()
     {
         buttonAnimator.SetBool("isHovering", false);
+        CursorChanger.Instance.ChangeCursorArrow();
     }
 
     private void OnMouseDown()
@@ -38,10 +40,19 @@ public class OptionsButtons : MonoBehaviour
         }
         else if (buttonID == 1)
         {
-            settingsMenu.SetActive(!settingsMenu.activeSelf);
+            if (!settingsMenu.activeSelf)
+            {
+                settingsMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                settingsMenu.GetComponent<Animator>().SetTrigger("FadeOut");
+                Time.timeScale = 1;
+            }
         }
 
-        if (tutorialMenu.activeSelf || settingsMenu.activeSelf)
+        if (tutorialMenu.activeSelf)
         {
             Time.timeScale = 0;
         }

@@ -142,6 +142,10 @@ public class ElementsManager : MonoBehaviour
         if (WaterCurrentValue < WaterMaxValue)
         {
             WaterCurrentValue += waterAmount;
+            if (WaterCurrentValue > WaterMaxValue)
+            {
+                WaterCurrentValue = WaterMaxValue;
+            }
             UpdateWaterUI();
         }
     }
@@ -151,6 +155,10 @@ public class ElementsManager : MonoBehaviour
         if (SunlightCurrentValue < SunlightMaxValue)
         {
             SunlightCurrentValue += sunlightAmount;
+            if (SunlightCurrentValue > SunlightMaxValue)
+            {
+                SunlightCurrentValue = SunlightMaxValue;
+            }
             UpdateSunlightUI();
         }
     }
@@ -160,6 +168,10 @@ public class ElementsManager : MonoBehaviour
         if (ElectricityCurrentValue < ElectricityMaxValue)
         {
             ElectricityCurrentValue += electricityAmount;
+            if (ElectricityCurrentValue > ElectricityMaxValue)
+            {
+                ElectricityCurrentValue = ElectricityMaxValue;
+            }
             UpdateElectricityUI();
         }
     }
@@ -199,5 +211,30 @@ public class ElementsManager : MonoBehaviour
         );
 
         _electricityText.text = ElectricityCurrentValue + "/" + ElectricityMaxValue;
+    }
+
+    public void MultiplySunlightMaxAmount(float multiplier)
+    {
+        SunlightCurrentValue += (int)(
+            Mathf.Round(SunlightMaxValue * multiplier) - SunlightMaxValue
+        );
+        SunlightMaxValue = (int)Mathf.Round(SunlightMaxValue * multiplier);
+        UpdateSunlightUI();
+    }
+
+    public void MultiplyWaterMaxAmount(float multiplier)
+    {
+        WaterCurrentValue += (int)(Mathf.Round(WaterMaxValue * multiplier) - WaterMaxValue);
+        WaterMaxValue = (int)Mathf.Round(WaterMaxValue * multiplier);
+        UpdateWaterUI();
+    }
+
+    public void MultiplyElectricityMaxAmount(float multiplier)
+    {
+        ElectricityCurrentValue += (int)(
+            Mathf.Round(ElectricityMaxValue * multiplier) - ElectricityMaxValue
+        );
+        ElectricityMaxValue = (int)Mathf.Round(ElectricityMaxValue * multiplier);
+        UpdateElectricityUI();
     }
 }

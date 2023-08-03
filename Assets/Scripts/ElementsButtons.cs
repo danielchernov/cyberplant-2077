@@ -14,7 +14,16 @@ public class ElementsButtons : MonoBehaviour
     Animator _colorCircle;
 
     [SerializeField]
+    AudioSource _sfxAudio;
+
+    [SerializeField]
+    AudioClip[] _sfxClips;
+
+    [SerializeField]
     int _buttonNumber = 0;
+
+    [SerializeField]
+    int _amountToAdd = 1;
 
     [SerializeField]
     float _timerDuration = 1f;
@@ -28,10 +37,17 @@ public class ElementsButtons : MonoBehaviour
             && _elementsManager.SunlightCurrentValue < _elementsManager.SunlightMaxValue
         )
         {
+            CursorChanger.Instance.ChangeCursorHand();
+
             if (!_holdVFX.isPlaying)
             {
                 _holdVFX.Play();
                 _colorCircle.SetBool("FadeIn", true);
+            }
+
+            if (!_sfxAudio.isPlaying)
+            {
+                _sfxAudio.PlayOneShot(_sfxClips[1], 0.5f);
             }
 
             if (_timer < _timerDuration)
@@ -41,7 +57,7 @@ public class ElementsButtons : MonoBehaviour
             else if (_timer >= _timerDuration)
             {
                 _timer = 0;
-                _elementsManager.AddSunlight(1);
+                _elementsManager.AddSunlight(_amountToAdd);
             }
         }
         else if (
@@ -49,10 +65,17 @@ public class ElementsButtons : MonoBehaviour
             && _elementsManager.WaterCurrentValue < _elementsManager.WaterMaxValue
         )
         {
+            CursorChanger.Instance.ChangeCursorHand();
+
             if (!_holdVFX.isPlaying)
             {
                 _holdVFX.Play();
                 _colorCircle.SetBool("FadeIn", true);
+            }
+
+            if (!_sfxAudio.isPlaying)
+            {
+                _sfxAudio.PlayOneShot(_sfxClips[0], 0.5f);
             }
 
             if (_timer < _timerDuration)
@@ -62,7 +85,7 @@ public class ElementsButtons : MonoBehaviour
             else if (_timer >= _timerDuration)
             {
                 _timer = 0;
-                _elementsManager.AddWater(1);
+                _elementsManager.AddWater(_amountToAdd);
             }
         }
         else if (
@@ -70,10 +93,17 @@ public class ElementsButtons : MonoBehaviour
             && _elementsManager.ElectricityCurrentValue < _elementsManager.ElectricityMaxValue
         )
         {
+            CursorChanger.Instance.ChangeCursorHand();
+
             if (!_holdVFX.isPlaying)
             {
                 _holdVFX.Play();
                 _colorCircle.SetBool("FadeIn", true);
+            }
+
+            if (!_sfxAudio.isPlaying)
+            {
+                _sfxAudio.PlayOneShot(_sfxClips[2], 0.5f);
             }
 
             if (_timer < _timerDuration)
@@ -83,13 +113,20 @@ public class ElementsButtons : MonoBehaviour
             else if (_timer >= _timerDuration)
             {
                 _timer = 0;
-                _elementsManager.AddElectricity(1);
+                _elementsManager.AddElectricity(_amountToAdd);
             }
         }
         else
         {
             _holdVFX.Stop();
             _colorCircle.SetBool("FadeIn", false);
+
+            if (_sfxAudio.isPlaying)
+            {
+                _sfxAudio.Stop();
+            }
+
+            CursorChanger.Instance.ChangeCursorArrow();
         }
     }
 
@@ -102,5 +139,17 @@ public class ElementsButtons : MonoBehaviour
             _holdVFX.Stop();
             _colorCircle.SetBool("FadeIn", false);
         }
+
+        if (_sfxAudio.isPlaying)
+        {
+            _sfxAudio.Stop();
+        }
+
+        CursorChanger.Instance.ChangeCursorArrow();
+    }
+
+    public void MultiplyAmountToAdd(float multiplier)
+    {
+        _amountToAdd = (int)Mathf.Round(_amountToAdd * multiplier);
     }
 }
