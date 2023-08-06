@@ -15,13 +15,19 @@ public class PlantManager : MonoBehaviour
     GameObject _addScoreVFX;
 
     [SerializeField]
+    Animator _seedAnimator;
+
+    [SerializeField]
     ElementsManager elementsManager;
 
     [SerializeField]
     AudioSource SFXaudioSource;
 
     [SerializeField]
-    AudioClip[] SFXaudioClip;
+    AudioClip[] SFXclick;
+
+    [SerializeField]
+    AudioClip SFXnoResources;
 
     public int GetScore()
     {
@@ -49,7 +55,14 @@ public class PlantManager : MonoBehaviour
             elementsManager.UseElectricity(electricityCost);
 
             if (isClick)
-                SFXaudioSource.PlayOneShot(SFXaudioClip[Random.Range(0, SFXaudioClip.Length)], 1f);
+            {
+                SFXaudioSource.PlayOneShot(SFXclick[Random.Range(0, SFXclick.Length)], 1f);
+                _seedAnimator.SetTrigger("SeedClicked");
+            }
+        }
+        else if (isClick)
+        {
+            SFXaudioSource.PlayOneShot(SFXnoResources, 1f);
         }
     }
 
