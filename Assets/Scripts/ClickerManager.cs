@@ -23,14 +23,11 @@ public class ClickerManager : MonoBehaviour
     [SerializeField]
     TextMeshPro clickerAmountText;
 
-    [SerializeField]
-    int _waterCost = 1;
+    public int WaterCost = 1;
 
-    [SerializeField]
-    int _sunlightCost = 1;
+    public int SunlightCost = 1;
 
-    [SerializeField]
-    int _electricityCost = 1;
+    public int ElectricityCost = 1;
 
     [SerializeField]
     int _amountToAddElementClicker = 1;
@@ -51,13 +48,13 @@ public class ClickerManager : MonoBehaviour
         switch (clickerID)
         {
             case 0:
-                if (clickTimer >= (timeBetweenClicks / clickerAmount))
+                if (clickTimer >= ((timeBetweenClicks / clickerAmount) * 2))
                 {
                     plantManager.ClickSeed(
                         _amountToAddSeedClicker,
-                        _sunlightCost,
-                        _waterCost,
-                        _electricityCost,
+                        SunlightCost,
+                        WaterCost,
+                        ElectricityCost,
                         false
                     );
 
@@ -66,25 +63,40 @@ public class ClickerManager : MonoBehaviour
 
                 break;
             case 1:
-                if (clickTimer >= (timeBetweenClicks / clickerAmount))
+                if (clickTimer >= ((timeBetweenClicks / clickerAmount) * 2))
                 {
-                    elementsManager.AddSunlight(_amountToAddElementClicker);
+                    elementsManager.AddSunlight(
+                        _amountToAddElementClicker,
+                        false,
+                        transform.position,
+                        new Color(1, 0.6f, 0, 1)
+                    );
 
                     clickTimer = 0;
                 }
                 break;
             case 2:
-                if (clickTimer >= (timeBetweenClicks / clickerAmount))
+                if (clickTimer >= ((timeBetweenClicks / clickerAmount) * 2))
                 {
-                    elementsManager.AddWater(_amountToAddElementClicker);
+                    elementsManager.AddWater(
+                        _amountToAddElementClicker,
+                        false,
+                        transform.position,
+                        new Color(0, 0.6f, 1, 1)
+                    );
 
                     clickTimer = 0;
                 }
                 break;
             case 3:
-                if (clickTimer >= (timeBetweenClicks / clickerAmount))
+                if (clickTimer >= ((timeBetweenClicks / clickerAmount) * 2))
                 {
-                    elementsManager.AddElectricity(_amountToAddElementClicker);
+                    elementsManager.AddElectricity(
+                        _amountToAddElementClicker,
+                        false,
+                        transform.position,
+                        new Color(0.6f, 0, 1, 1)
+                    );
 
                     clickTimer = 0;
                 }

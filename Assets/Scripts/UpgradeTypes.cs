@@ -1,0 +1,19 @@
+public enum Upgrades
+{
+    SeedClicker,
+    GardenLight,
+    WateringCan,
+    Battery,
+    Fertilizer,
+    Trowel,
+    Shears,
+    Rake,
+    PowerPlant,
+    Dam,
+    SolarPanel,
+    Tractor,
+    Generator,
+    Sprinkler,
+    Greenhouse,
+    GraphicCard
+};

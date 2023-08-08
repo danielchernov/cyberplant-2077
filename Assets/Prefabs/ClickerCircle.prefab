@@ -393,6 +393,8 @@ MonoBehaviour:
   _waterCost: 1
   _sunlightCost: 1
   _electricityCost: 1
+  _amountToAddElementClicker: 1
+  _amountToAddSeedClicker: 1
 --- !u!95 &778588968473909828
 Animator:
   serializedVersion: 5
@@ -611,7 +613,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 22
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7158669493771282794
 MonoBehaviour:

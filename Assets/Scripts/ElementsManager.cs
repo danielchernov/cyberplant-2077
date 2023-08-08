@@ -29,17 +29,26 @@ public class ElementsManager : MonoBehaviour
     [SerializeField]
     SpriteRenderer[] trianglesRenderer;
 
-    public float WaterMaxValue = 500;
+    [SerializeField]
+    GameObject _addElementVFX;
 
-    public float WaterCurrentValue = 500;
+    public float WaterMaxValue = 100;
 
-    public float SunlightMaxValue = 500;
+    public float WaterCurrentValue = 100;
 
-    public float SunlightCurrentValue = 500;
+    public float SunlightMaxValue = 100;
 
-    public float ElectricityMaxValue = 500;
+    public float SunlightCurrentValue = 100;
 
-    public float ElectricityCurrentValue = 500;
+    public float ElectricityMaxValue = 100;
+
+    public float ElectricityCurrentValue = 100;
+
+    // private void Start()
+    // {
+    //     StartCoroutine(SunlightGiver(1, 1.5f));
+    //     StartCoroutine(WaterTaker(1, 2.5f));
+    // }
 
     void Update()
     {
@@ -137,20 +146,7 @@ public class ElementsManager : MonoBehaviour
         UpdateElectricityUI();
     }
 
-    public void AddWater(float waterAmount)
-    {
-        if (WaterCurrentValue < WaterMaxValue)
-        {
-            WaterCurrentValue += waterAmount;
-            if (WaterCurrentValue > WaterMaxValue)
-            {
-                WaterCurrentValue = WaterMaxValue;
-            }
-            UpdateWaterUI();
-        }
-    }
-
-    public void AddSunlight(float sunlightAmount)
+    public void AddSunlight(float sunlightAmount, bool isHover, Vector3 spawnPos, Color faceColor)
     {
         if (SunlightCurrentValue < SunlightMaxValue)
         {
@@ -160,10 +156,30 @@ public class ElementsManager : MonoBehaviour
                 SunlightCurrentValue = SunlightMaxValue;
             }
             UpdateSunlightUI();
+            SpawnElementVFX(sunlightAmount, isHover, spawnPos, faceColor);
         }
     }
 
-    public void AddElectricity(float electricityAmount)
+    public void AddWater(float waterAmount, bool isHover, Vector3 spawnPos, Color faceColor)
+    {
+        if (WaterCurrentValue < WaterMaxValue)
+        {
+            WaterCurrentValue += waterAmount;
+            if (WaterCurrentValue > WaterMaxValue)
+            {
+                WaterCurrentValue = WaterMaxValue;
+            }
+            UpdateWaterUI();
+            SpawnElementVFX(waterAmount, isHover, spawnPos, faceColor);
+        }
+    }
+
+    public void AddElectricity(
+        float electricityAmount,
+        bool isHover,
+        Vector3 spawnPos,
+        Color faceColor
+    )
     {
         if (ElectricityCurrentValue < ElectricityMaxValue)
         {
@@ -173,7 +189,46 @@ public class ElementsManager : MonoBehaviour
                 ElectricityCurrentValue = ElectricityMaxValue;
             }
             UpdateElectricityUI();
+            SpawnElementVFX(electricityAmount, isHover, spawnPos, faceColor);
         }
+    }
+
+    void SpawnElementVFX(float amountToShow, bool isHover, Vector3 spawnPos, Color faceColor)
+    {
+        GameObject addedElement = Instantiate(_addElementVFX);
+
+        TextMeshPro elementText = addedElement.GetComponentInChildren<TextMeshPro>();
+
+        elementText.text = "+" + amountToShow;
+
+        Vector3 spawnPosition;
+
+        if (isHover)
+        {
+            spawnPosition = new Vector3(
+                spawnPos.x + Random.Range(-0.2f, 0.1f),
+                spawnPos.y + Random.Range(1f, 1.1f),
+                spawnPos.z
+            );
+
+            elementText.fontSize *= 1f;
+            elementText.faceColor = faceColor;
+            elementText.outlineColor = faceColor / 2;
+        }
+        else
+        {
+            spawnPosition = new Vector3(
+                spawnPos.x + Random.Range(0.3f, 0.5f),
+                spawnPos.y + Random.Range(0.6f, 0.7f),
+                spawnPos.z
+            );
+
+            elementText.fontSize *= 0.8f;
+            elementText.faceColor = faceColor / 2;
+            elementText.outlineColor = faceColor / 4;
+        }
+
+        addedElement.transform.position = spawnPosition;
     }
 
     void UpdateWaterUI()
@@ -237,4 +292,20 @@ public class ElementsManager : MonoBehaviour
         ElectricityMaxValue = (int)Mathf.Round(ElectricityMaxValue * multiplier);
         UpdateElectricityUI();
     }
+
+    // IEnumerator SunlightGiver(int amountToChange, float timeBetweenChanges)
+    // {
+    //     yield return new WaitForSeconds(timeBetweenChanges);
+    //     AddSunlight(amountToChange);
+
+    //     yield return SunlightGiver(amountToChange, timeBetweenChanges);
+    // }
+
+    // IEnumerator WaterTaker(int amountToChange, float timeBetweenChanges)
+    // {
+    //     yield return new WaitForSeconds(timeBetweenChanges);
+    //     UseWater(amountToChange);
+
+    //     yield return WaterTaker(amountToChange, timeBetweenChanges);
+    // }
 }

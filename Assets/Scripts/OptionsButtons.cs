@@ -20,6 +20,26 @@ public class OptionsButtons : MonoBehaviour
         buttonAnimator = GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        if (buttonID == 1)
+        {
+            if (Input.GetButtonDown("Cancel"))
+            {
+                if (settingsMenu.activeSelf)
+                {
+                    settingsMenu.GetComponent<Animator>().SetTrigger("FadeOut");
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    settingsMenu.SetActive(true);
+                    Time.timeScale = 0;
+                }
+            }
+        }
+    }
+
     private void OnMouseEnter()
     {
         buttonAnimator.SetBool("isHovering", true);

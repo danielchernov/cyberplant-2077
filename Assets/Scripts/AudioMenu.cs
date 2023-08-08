@@ -8,7 +8,8 @@ using TMPro;
 public class AudioMenu : MonoBehaviour
 {
     public AudioMixer mainMixer;
-    public Slider soundSlider;
+    public Slider soundSliderSFX;
+    public Slider soundSliderBGM;
 
     public AudioSource bgmAudio;
     public AudioClip[] tracks;
@@ -19,13 +20,10 @@ public class AudioMenu : MonoBehaviour
 
     void Start()
     {
-        soundSlider.value = PlayerPrefs.GetFloat("volume", 0.5f);
+        soundSliderSFX.value = PlayerPrefs.GetFloat("volumeSFX", 0.5f);
+        soundSliderBGM.value = PlayerPrefs.GetFloat("volumeBGM", 0.5f);
 
-        currentTrack = Random.Range(0, tracks.Length);
-        bgmAudio.clip = tracks[currentTrack];
-        bgmAudio.Play();
-        trackText.text = (currentTrack + 1) + "/" + tracks.Length;
-        ChangeTrackTitle(currentTrack);
+        ChangeTrack(0);
     }
 
     void Update()
@@ -36,10 +34,24 @@ public class AudioMenu : MonoBehaviour
         }
     }
 
-    public void SetVolume(float volume)
+    public void ChangeTrack(int currentTrack)
     {
-        mainMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("volume", volume);
+        bgmAudio.clip = tracks[currentTrack];
+        bgmAudio.Play();
+        trackText.text = (currentTrack + 1) + "/" + tracks.Length;
+        ChangeTrackTitle(currentTrack);
+    }
+
+    public void SetVolumeSFX(float volume)
+    {
+        mainMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("volumeSFX", volume);
+    }
+
+    public void SetVolumeBGM(float volume)
+    {
+        mainMixer.SetFloat("BGMVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("volumeBGM", volume);
     }
 
     public void ChangeTrackForward()

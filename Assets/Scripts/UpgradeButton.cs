@@ -6,10 +6,10 @@ using TMPro;
 public class UpgradeButton : MonoBehaviour
 {
     [SerializeField]
-    int upgradeID;
+    Upgrades upgradeID;
 
     [SerializeField]
-    int price;
+    float price;
 
     UpgradesManager upgradesManager;
 
@@ -26,7 +26,27 @@ public class UpgradeButton : MonoBehaviour
     TextMeshPro upgradeName;
 
     [SerializeField]
+    TextMeshPro upgradeDescription;
+
+    [SerializeField]
+    AudioSource SFXAudio;
+
+    [SerializeField]
+    AudioClip[] SFXClips;
+
+    [SerializeField]
+    AudioClip SFXNoMoney;
+
+    [SerializeField]
     string upgradeNameToAdd = "Default Upgrade";
+
+    [SerializeField]
+    string upgradeDescriptionToAdd = "Default Description";
+
+    [SerializeField]
+    GameObject _tutorialMenu;
+
+    public float UpgradeMultiplier = 1;
 
     Animator buttonAnimator;
     SpriteRenderer priceColor;
@@ -39,8 +59,10 @@ public class UpgradeButton : MonoBehaviour
         priceColor = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
+        if (_tutorialMenu.activeSelf)
+            return;
         if (price <= plantManager.GetScore())
         {
             priceColor.color = new Color(0, 1, 0.5f, 0);
@@ -49,17 +71,25 @@ public class UpgradeButton : MonoBehaviour
         {
             priceColor.color = new Color(1, 0.5f, 0, 0);
         }
+    }
 
+    private void OnMouseEnter()
+    {
+        if (_tutorialMenu.activeSelf)
+            return;
         buttonAnimator.SetBool("isHovering", true);
         upgradeNameAnimator.SetBool("isActive", true);
         costText.text = price.ToString();
         upgradeName.text = upgradeNameToAdd;
+        upgradeDescription.text = upgradeDescriptionToAdd;
 
         CursorChanger.Instance.ChangeCursorHand();
     }
 
     private void OnMouseExit()
     {
+        if (_tutorialMenu.activeSelf)
+            return;
         buttonAnimator.SetBool("isHovering", false);
         upgradeNameAnimator.SetBool("isActive", false);
 
@@ -70,14 +100,21 @@ public class UpgradeButton : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (_tutorialMenu.activeSelf)
+            return;
         if (price <= plantManager.GetScore())
         {
-            plantManager.SubstractFromScore(price);
+            plantManager.SubstractFromScore((int)price);
 
-            price *= 2;
+            price = Mathf.Round(price * 1.25f);
             costText.text = price.ToString();
 
+            SFXAudio.PlayOneShot(SFXClips[Random.Range(0, SFXClips.Length)], 0.6f);
             upgradesManager.BuyUpgrade(upgradeID);
+        }
+        else
+        {
+            SFXAudio.PlayOneShot(SFXNoMoney, 0.3f);
         }
     }
 }

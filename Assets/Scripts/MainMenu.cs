@@ -7,7 +7,19 @@ public class MainMenu : MonoBehaviour
     Animator mainMenuAnimator;
 
     [SerializeField]
-    GameObject mainGame;
+    GameObject _mainGame;
+
+    [SerializeField]
+    GameObject _options;
+
+    [SerializeField]
+    GameObject _mainMenu;
+
+    [SerializeField]
+    GameObject _credits;
+
+    [SerializeField]
+    AudioMenu _audioMenu;
 
     private void Start()
     {
@@ -17,18 +29,36 @@ public class MainMenu : MonoBehaviour
     public void PlayButton()
     {
         mainMenuAnimator.SetTrigger("FadeOut");
-        mainGame.SetActive(true);
+        _mainGame.SetActive(true);
+        _options.SetActive(true);
+        _audioMenu.ChangeTrack(Random.Range(0, _audioMenu.tracks.Length));
     }
 
-    public void ContinueButton()
+    // public void ContinueButton()
+    // {
+    //     mainMenuAnimator.SetTrigger("FadeOut");
+    //     _mainGame.SetActive(true);
+    //     _options.SetActive(true);
+    //     _audioMenu.ChangeTrack(Random.Range(0, _audioMenu.tracks.Length));
+    // }
+
+
+
+    public void CreditsButton()
     {
-        mainMenuAnimator.SetTrigger("FadeOut");
-        mainGame.SetActive(true);
+        _credits.SetActive(true);
+        _mainMenu.SetActive(false);
     }
 
     public void ExitButton()
     {
         Application.Quit();
+    }
+
+    public void BackButton()
+    {
+        _credits.SetActive(false);
+        _mainMenu.SetActive(true);
     }
 
     public void DeactivateMainMenu()

@@ -29,9 +29,29 @@ public class PlantManager : MonoBehaviour
     [SerializeField]
     AudioClip SFXnoResources;
 
+    [SerializeField]
+    Transform _flower;
+
+    [SerializeField]
+    Transform _stalk;
+
+    [SerializeField]
+    int _timesClicked = 0;
+
+    [SerializeField]
+    SeedManager _seedManager;
+
+    [SerializeField]
+    int valueToMod = 100;
+
     public int GetScore()
     {
         return _score;
+    }
+
+    public int GetTimesClicked()
+    {
+        return _timesClicked;
     }
 
     public void ClickSeed(
@@ -59,6 +79,19 @@ public class PlantManager : MonoBehaviour
                 SFXaudioSource.PlayOneShot(SFXclick[Random.Range(0, SFXclick.Length)], 1f);
                 _seedAnimator.SetTrigger("SeedClicked");
             }
+
+            if (_flower.position.y < 2.25f)
+            {
+                MoveFlower(0.0001f);
+            }
+
+            _timesClicked++;
+
+            if (GetTimesClicked() % valueToMod == 0)
+            {
+                _seedManager.MultiplyPointCost(1.7f);
+                valueToMod = (int)Mathf.Round(valueToMod * 1.7f);
+            }
         }
         else if (isClick)
         {
@@ -80,7 +113,7 @@ public class PlantManager : MonoBehaviour
 
     public void SpawnScoreVFX(int amountToShow, bool isClick)
     {
-        GameObject addedScore = Instantiate(_addScoreVFX, transform.position, Quaternion.identity);
+        GameObject addedScore = Instantiate(_addScoreVFX);
 
         TextMeshPro scoreText = addedScore.GetComponentInChildren<TextMeshPro>();
 
@@ -113,5 +146,23 @@ public class PlantManager : MonoBehaviour
         }
 
         addedScore.transform.position = spawnPosition;
+    }
+
+    private void MoveFlower(float amountToAdd)
+    {
+        Vector3 flowerPos = new Vector3(
+            _flower.transform.position.x,
+            _flower.transform.position.y + amountToAdd,
+            _flower.transform.position.z
+        );
+
+        _flower.transform.position = flowerPos;
+
+        Vector3 stalkScale = new Vector3(
+            _stalk.localScale.x,
+            _stalk.localScale.y + amountToAdd,
+            _stalk.localScale.z
+        );
+        _stalk.localScale = stalkScale;
     }
 }
