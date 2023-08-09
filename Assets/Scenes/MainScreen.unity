@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 1
-  price: 15
+  _price: 15
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -498,6 +498,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Garden Light
   upgradeDescriptionToAdd: Add Light Clicker
   _tutorialMenu: {fileID: 828985605}
@@ -1022,6 +1023,37 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!1 &57705727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57705728}
+  m_Layer: 0
+  m_Name: ScoreVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &57705728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57705727}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2013646763}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &70462668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,7 +2097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 4
-  price: 30
+  _price: 30
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -2079,10 +2111,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Fertilizer
-  upgradeDescriptionToAdd: Better Seed Clickers
+  upgradeDescriptionToAdd: More Points per Click
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 1
+  UpgradeMultiplier: 0.75
 --- !u!95 &96330705
 Animator:
   serializedVersion: 5
@@ -2336,7 +2369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 15
-  price: 500
+  _price: 500
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -2350,10 +2383,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Graphic Card
-  upgradeDescriptionToAdd: ???
+  upgradeDescriptionToAdd: Boosts Points Gathering
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 2
+  UpgradeMultiplier: 0.1
 --- !u!95 &101836547
 Animator:
   serializedVersion: 5
@@ -3433,7 +3467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 13
-  price: 300
+  _price: 300
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -3447,10 +3481,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Garden Sprinkler
   upgradeDescriptionToAdd: More Water Storage
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 1.5
+  UpgradeMultiplier: 0.5
 --- !u!95 &145109966
 Animator:
   serializedVersion: 5
@@ -3954,7 +3989,7 @@ Animator:
   m_GameObject: {fileID: 182410951}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2487a63c26787194892cd49b36e30d86, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5511,7 +5546,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2, y: 0.7}
+  m_Size: {x: 2.2, y: 0.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5598,7 +5633,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2, y: 0.7}
+  m_Size: {x: 2.2, y: 0.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6462,7 +6497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 8
-  price: 100
+  _price: 100
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -6476,10 +6511,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Power Plant
-  upgradeDescriptionToAdd: More Power on Hover
+  upgradeDescriptionToAdd: Better Power Clickers
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 1
+  UpgradeMultiplier: 0.5
 --- !u!95 &381358752
 Animator:
   serializedVersion: 5
@@ -7298,7 +7334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 3
-  price: 25
+  _price: 25
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -7312,6 +7348,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Battery
   upgradeDescriptionToAdd: Add Power Clicker
   _tutorialMenu: {fileID: 828985605}
@@ -9497,6 +9534,7 @@ Transform:
   - {fileID: 1703026001}
   - {fileID: 860121829}
   - {fileID: 768498860}
+  - {fileID: 2013646763}
   - {fileID: 1516568698}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -10295,7 +10333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 10
-  price: 150
+  _price: 150
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -10309,10 +10347,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Solar Panel
-  upgradeDescriptionToAdd: More Light on Hover
+  upgradeDescriptionToAdd: Better Light Clickers
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 1
+  UpgradeMultiplier: 0.5
 --- !u!95 &614188672
 Animator:
   serializedVersion: 5
@@ -10763,7 +10802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 6
-  price: 50
+  _price: 50
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -10777,10 +10816,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Pruning Shears
-  upgradeDescriptionToAdd: Better Water Clickers
+  upgradeDescriptionToAdd: More Water on Hover
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 0.5
+  UpgradeMultiplier: 0.75
 --- !u!95 &644693800
 Animator:
   serializedVersion: 5
@@ -12983,7 +13023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 5
-  price: 40
+  _price: 40
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -12997,10 +13037,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Trowel
-  upgradeDescriptionToAdd: Better Light Clickers
+  upgradeDescriptionToAdd: More Light on Hover
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 0.5
+  UpgradeMultiplier: 0.75
 --- !u!95 &746906789
 Animator:
   serializedVersion: 5
@@ -13171,12 +13212,12 @@ MonoBehaviour:
   - {fileID: 302781197}
   - {fileID: 1691740885}
   _addElementVFX: {fileID: 315822226022193871, guid: cd0dbd1ed867dc04e955e6beb9c57edb, type: 3}
-  WaterMaxValue: 1000
-  WaterCurrentValue: 1000
-  SunlightMaxValue: 1000
-  SunlightCurrentValue: 1000
-  ElectricityMaxValue: 1000
-  ElectricityCurrentValue: 1000
+  WaterMaxValue: 100
+  WaterCurrentValue: 100
+  SunlightMaxValue: 100
+  SunlightCurrentValue: 100
+  ElectricityMaxValue: 100
+  ElectricityCurrentValue: 100
 --- !u!1 &778476847
 GameObject:
   m_ObjectHideFlags: 0
@@ -14039,7 +14080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844427000}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9719.999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 108, y: 108, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15436,7 +15477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 11
-  price: 175
+  _price: 175
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -15450,10 +15491,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Tractor
-  upgradeDescriptionToAdd: More Points per Click
+  upgradeDescriptionToAdd: Better Seed Clickers
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 1
+  UpgradeMultiplier: 0.5
 --- !u!95 &965564003
 Animator:
   serializedVersion: 5
@@ -15944,7 +15986,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -16088,7 +16130,7 @@ Transform:
   m_GameObject: {fileID: 988736789}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 6}
+  m_LocalScale: {x: 0.6, y: 0, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 182410952}
@@ -16567,7 +16609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 9
-  price: 125
+  _price: 125
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -16581,10 +16623,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Dam
-  upgradeDescriptionToAdd: More Water on Hover
+  upgradeDescriptionToAdd: Better Water Clickers
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 1
+  UpgradeMultiplier: 0.5
 --- !u!95 &1000223797
 Animator:
   serializedVersion: 5
@@ -16733,6 +16776,7 @@ MonoBehaviour:
   sfxClips:
   - {fileID: 8300000, guid: 5d6b943d5b1c6564d9f22dfc0feccac6, type: 3}
   - {fileID: 8300000, guid: 7a55c2a37fb54504aad84778ec7fefa3, type: 3}
+  - {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradesAmounts: []
   upgradeMultiplier: 1.5
   _tutorialMenu: {fileID: 828985605}
@@ -16753,6 +16797,7 @@ MonoBehaviour:
   - {fileID: 1000223796}
   - {fileID: 614188671}
   - {fileID: 965564002}
+  _upgradeDivisor: 3
 --- !u!61 &1029300017
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18650,8 +18695,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 2.4
+  m_fontSizeBase: 2.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -18931,9 +18976,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181827268}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0, z: 1}
+  m_LocalScale: {x: 0.18, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 182410952}
@@ -24464,6 +24509,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537268735}
   m_CullTransparentMesh: 1
+--- !u!1 &1538270020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1538270021}
+  m_Layer: 0
+  m_Name: ElementVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1538270021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538270020}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2013646763}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540276304
 GameObject:
   m_ObjectHideFlags: 0
@@ -24831,7 +24907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 7
-  price: 75
+  _price: 75
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -24845,10 +24921,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Rake
-  upgradeDescriptionToAdd: Better Power Clickers
+  upgradeDescriptionToAdd: More Power on Hover
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 0.5
+  UpgradeMultiplier: 0.75
 --- !u!95 &1555048127
 Animator:
   serializedVersion: 5
@@ -25496,7 +25573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 0
-  price: 10
+  _price: 10
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -25510,6 +25587,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Seed Clicker
   upgradeDescriptionToAdd: Add Seed Clicker
   _tutorialMenu: {fileID: 828985605}
@@ -27478,7 +27556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _score: 0
   _scoreText: {fileID: 985147967}
-  _addScoreVFX: {fileID: 315822226022193871, guid: addb5b98085fc4b4d87340d3ab89dbea, type: 3}
   _seedAnimator: {fileID: 1009332061}
   elementsManager: {fileID: 768498861}
   SFXaudioSource: {fileID: 1423395777}
@@ -27487,6 +27564,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 13365be523feeab43a88125bafa76ad7, type: 3}
   - {fileID: 8300000, guid: f461b630c7bec3e499599a9ef9c222c8, type: 3}
   SFXnoResources: {fileID: 8300000, guid: f9a0a53aa1a2a5d44805b3fe40f2d68f, type: 3}
+  _flowerAnimator: {fileID: 182410953}
   _flower: {fileID: 988736790}
   _stalk: {fileID: 1181827269}
   _timesClicked: 0
@@ -28574,7 +28652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 2
-  price: 20
+  _price: 20
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -28588,6 +28666,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Watering Can
   upgradeDescriptionToAdd: Add Water Clicker
   _tutorialMenu: {fileID: 828985605}
@@ -29002,7 +29081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 14
-  price: 400
+  _price: 400
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -29016,10 +29095,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Greenhouse
   upgradeDescriptionToAdd: More Light Storage
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 1.5
+  UpgradeMultiplier: 0.5
 --- !u!95 &1808500096
 Animator:
   serializedVersion: 5
@@ -29617,7 +29697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 12
-  price: 200
+  _price: 200
   plantManager: {fileID: 1703026002}
   costText: {fileID: 1167940345}
   upgradeNameAnimator: {fileID: 341194183}
@@ -29631,10 +29711,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e30166f35f8cc2449772b2032043cd7, type: 3}
   - {fileID: 8300000, guid: 438633f27d36a44469ebdc5c253a6619, type: 3}
   SFXNoMoney: {fileID: 8300000, guid: 577440cbfd1e84b4d88df17c0839a5c5, type: 3}
+  SFXHoverButton: {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradeNameToAdd: Generator
   upgradeDescriptionToAdd: More Power Storage
   _tutorialMenu: {fileID: 828985605}
-  UpgradeMultiplier: 1.5
+  UpgradeMultiplier: 0.5
 --- !u!95 &1876986390
 Animator:
   serializedVersion: 5
@@ -31572,6 +31653,59 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2013646761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2013646763}
+  - component: {fileID: 2013646762}
+  m_Layer: 0
+  m_Name: ObjectPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2013646762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013646761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f9ab9b9300b9d43b6becf39b546635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pools:
+  - poolNumber: 0
+    objectPrefab: {fileID: 315822226022193871, guid: addb5b98085fc4b4d87340d3ab89dbea, type: 3}
+    poolSize: 100
+  - poolNumber: 1
+    objectPrefab: {fileID: 315822226022193871, guid: cd0dbd1ed867dc04e955e6beb9c57edb, type: 3}
+    poolSize: 300
+--- !u!4 &2013646763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013646761}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 57705728}
+  - {fileID: 1538270021}
+  m_Father: {fileID: 579450826}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014692119
 GameObject:
   m_ObjectHideFlags: 0
@@ -32334,6 +32468,7 @@ MonoBehaviour:
   sfxClips:
   - {fileID: 8300000, guid: 5d6b943d5b1c6564d9f22dfc0feccac6, type: 3}
   - {fileID: 8300000, guid: 7a55c2a37fb54504aad84778ec7fefa3, type: 3}
+  - {fileID: 8300000, guid: f1d2fd1f94ba7b24484b5cbcbf5ce186, type: 3}
   upgradesAmounts: []
   upgradeMultiplier: 1
   _tutorialMenu: {fileID: 828985605}
@@ -32354,6 +32489,7 @@ MonoBehaviour:
   - {fileID: 1000223796}
   - {fileID: 614188671}
   - {fileID: 965564002}
+  _upgradeDivisor: 3
 --- !u!61 &2071475878
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34452,7 +34588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46.5, y: 54}
+  m_AnchoredPosition: {x: 46.5, y: 75}
   m_SizeDelta: {x: 50, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6682294595082614328

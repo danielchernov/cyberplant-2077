@@ -114,11 +114,6 @@ public class ClickerManager : MonoBehaviour
     {
         clickerAmount++;
         clickerAmountText.text = clickerAmount.ToString();
-
-        if (clickerAmount >= 99)
-        {
-            clickerUpgradeButton.SetActive(false);
-        }
     }
 
     public void MultiplyAmountToAddSeedClicker(float multiplier)

@@ -41,6 +41,9 @@ public class UpgradesManager : MonoBehaviour
     [SerializeField]
     UpgradeButton[] _upgradeButtons;
 
+    [SerializeField]
+    float _upgradeDivisor = 3;
+
     Animator upgradeButtonAnimator;
 
     private void Start()
@@ -58,6 +61,8 @@ public class UpgradesManager : MonoBehaviour
         costText.text = "";
 
         CursorChanger.Instance.ChangeCursorHand();
+
+        sfxAudio.PlayOneShot(sfxClips[2], 0.2f);
     }
 
     private void OnMouseExit()
@@ -101,6 +106,11 @@ public class UpgradesManager : MonoBehaviour
                     clickers[0].AddClicker();
                     clickers[0].GetComponent<Animator>().SetTrigger("AddedClicker");
                 }
+
+                if (upgradesAmounts[0] >= 99)
+                {
+                    _upgradeButtons[3].gameObject.SetActive(false);
+                }
                 break;
             case Upgrades.GardenLight:
                 // Adds Light Clicker
@@ -114,6 +124,11 @@ public class UpgradesManager : MonoBehaviour
                 {
                     clickers[1].AddClicker();
                     clickers[1].GetComponent<Animator>().SetTrigger("AddedClicker");
+                }
+
+                if (upgradesAmounts[1] >= 99)
+                {
+                    _upgradeButtons[2].gameObject.SetActive(false);
                 }
                 break;
             case Upgrades.WateringCan:
@@ -129,6 +144,11 @@ public class UpgradesManager : MonoBehaviour
                     clickers[2].AddClicker();
                     clickers[2].GetComponent<Animator>().SetTrigger("AddedClicker");
                 }
+
+                if (upgradesAmounts[2] >= 99)
+                {
+                    _upgradeButtons[1].gameObject.SetActive(false);
+                }
                 break;
             case Upgrades.Battery:
                 // Adds Power Clicker
@@ -142,6 +162,11 @@ public class UpgradesManager : MonoBehaviour
                 {
                     clickers[3].AddClicker();
                     clickers[3].GetComponent<Animator>().SetTrigger("AddedClicker");
+                }
+
+                if (upgradesAmounts[3] >= 99)
+                {
+                    _upgradeButtons[0].gameObject.SetActive(false);
                 }
                 break;
             case Upgrades.Fertilizer:
@@ -160,9 +185,18 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[7].UpgradeMultiplier / (upgradesAmounts[4] / 2));
+                    1
+                    + (
+                        _upgradeButtons[7].UpgradeMultiplier
+                        / (upgradesAmounts[4] / _upgradeDivisor)
+                    );
 
                 seedManager.MultiplyAmountToAdd(upgradeMultiplier);
+
+                if (upgradesAmounts[4] >= 99)
+                {
+                    _upgradeButtons[7].gameObject.SetActive(false);
+                }
                 break;
             case Upgrades.Trowel:
                 // More Light Amount to Add on Hover
@@ -180,11 +214,20 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[6].UpgradeMultiplier / (upgradesAmounts[5] / 2));
+                    1
+                    + (
+                        _upgradeButtons[6].UpgradeMultiplier
+                        / (upgradesAmounts[5] / _upgradeDivisor)
+                    );
 
                 clickers[1]
                     .GetComponentInParent<ElementsButtons>()
                     .MultiplyAmountToAdd(upgradeMultiplier);
+
+                if (upgradesAmounts[5] >= 99)
+                {
+                    _upgradeButtons[6].gameObject.SetActive(false);
+                }
                 break;
             case Upgrades.Shears:
                 // More Water Amount to Add on Hover
@@ -202,11 +245,20 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[5].UpgradeMultiplier / (upgradesAmounts[6] / 2));
+                    1
+                    + (
+                        _upgradeButtons[5].UpgradeMultiplier
+                        / (upgradesAmounts[6] / _upgradeDivisor)
+                    );
 
                 clickers[2]
                     .GetComponentInParent<ElementsButtons>()
                     .MultiplyAmountToAdd(upgradeMultiplier);
+
+                if (upgradesAmounts[6] >= 99)
+                {
+                    _upgradeButtons[5].gameObject.SetActive(false);
+                }
                 break;
             case Upgrades.Rake:
                 // More Power Amount to Add on Hover
@@ -224,11 +276,20 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[4].UpgradeMultiplier / (upgradesAmounts[7] / 2));
+                    1
+                    + (
+                        _upgradeButtons[4].UpgradeMultiplier
+                        / (upgradesAmounts[7] / _upgradeDivisor)
+                    );
 
                 clickers[3]
                     .GetComponentInParent<ElementsButtons>()
                     .MultiplyAmountToAdd(upgradeMultiplier);
+
+                if (upgradesAmounts[7] >= 99)
+                {
+                    _upgradeButtons[4].gameObject.SetActive(false);
+                }
                 break;
             case Upgrades.PowerPlant:
                 // More points per PowerClicker Click
@@ -248,9 +309,18 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[12].UpgradeMultiplier / (upgradesAmounts[8] / 2));
+                    1
+                    + (
+                        _upgradeButtons[12].UpgradeMultiplier
+                        / (upgradesAmounts[8] / _upgradeDivisor)
+                    );
 
                 clickers[3].MultiplyAmountToAddElementClicker(upgradeMultiplier);
+
+                if (upgradesAmounts[8] >= 99)
+                {
+                    _upgradeButtons[12].gameObject.SetActive(false);
+                }
                 break;
 
             case Upgrades.Dam:
@@ -271,9 +341,18 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[13].UpgradeMultiplier / (upgradesAmounts[9] / 2));
+                    1
+                    + (
+                        _upgradeButtons[13].UpgradeMultiplier
+                        / (upgradesAmounts[9] / _upgradeDivisor)
+                    );
 
                 clickers[2].MultiplyAmountToAddElementClicker(upgradeMultiplier);
+
+                if (upgradesAmounts[9] >= 99)
+                {
+                    _upgradeButtons[13].gameObject.SetActive(false);
+                }
                 break;
 
             case Upgrades.SolarPanel:
@@ -292,9 +371,18 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[14].UpgradeMultiplier / (upgradesAmounts[10] / 2));
+                    1
+                    + (
+                        _upgradeButtons[14].UpgradeMultiplier
+                        / (upgradesAmounts[10] / _upgradeDivisor)
+                    );
 
                 clickers[1].MultiplyAmountToAddElementClicker(upgradeMultiplier);
+
+                if (upgradesAmounts[10] >= 99)
+                {
+                    _upgradeButtons[14].gameObject.SetActive(false);
+                }
                 break;
 
             case Upgrades.Tractor:
@@ -313,9 +401,18 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[15].UpgradeMultiplier / (upgradesAmounts[11] / 2));
+                    1
+                    + (
+                        _upgradeButtons[15].UpgradeMultiplier
+                        / (upgradesAmounts[11] / _upgradeDivisor)
+                    );
 
                 clickers[0].MultiplyAmountToAddSeedClicker(upgradeMultiplier);
+
+                if (upgradesAmounts[11] >= 99)
+                {
+                    _upgradeButtons[15].gameObject.SetActive(false);
+                }
                 break;
 
             case Upgrades.Generator:
@@ -334,9 +431,18 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[8].UpgradeMultiplier / (upgradesAmounts[12] / 2));
+                    1
+                    + (
+                        _upgradeButtons[8].UpgradeMultiplier
+                        / (upgradesAmounts[12] / _upgradeDivisor)
+                    );
 
                 elementsManager.MultiplyElectricityMaxAmount(upgradeMultiplier);
+
+                if (upgradesAmounts[12] >= 99)
+                {
+                    _upgradeButtons[8].gameObject.SetActive(false);
+                }
                 break;
 
             case Upgrades.Sprinkler:
@@ -355,9 +461,18 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[9].UpgradeMultiplier / (upgradesAmounts[13] / 2));
+                    1
+                    + (
+                        _upgradeButtons[9].UpgradeMultiplier
+                        / (upgradesAmounts[13] / _upgradeDivisor)
+                    );
 
                 elementsManager.MultiplyWaterMaxAmount(upgradeMultiplier);
+
+                if (upgradesAmounts[13] >= 99)
+                {
+                    _upgradeButtons[9].gameObject.SetActive(false);
+                }
                 break;
             case Upgrades.Greenhouse:
                 // More Max Amount of Light
@@ -375,13 +490,22 @@ public class UpgradesManager : MonoBehaviour
                 }
 
                 upgradeMultiplier =
-                    1 + (_upgradeButtons[10].UpgradeMultiplier / (upgradesAmounts[14] / 2));
+                    1
+                    + (
+                        _upgradeButtons[10].UpgradeMultiplier
+                        / (upgradesAmounts[14] / _upgradeDivisor)
+                    );
 
                 elementsManager.MultiplySunlightMaxAmount(upgradeMultiplier);
+
+                if (upgradesAmounts[14] >= 99)
+                {
+                    _upgradeButtons[10].gameObject.SetActive(false);
+                }
                 break;
 
             case Upgrades.GraphicCard:
-                // More Power Amount to Add on Hover
+                // More Points per Click AND More points per SeedClicker Click
                 upgradesAmounts[15]++;
 
                 if (!upgradesCounters[0].transform.parent.parent.gameObject.activeSelf)
@@ -395,12 +519,15 @@ public class UpgradesManager : MonoBehaviour
                     upgradesCounters[0].GetComponentInParent<Animator>().SetTrigger("AddedCounter");
                 }
 
-                upgradeMultiplier =
-                    1 + (_upgradeButtons[11].UpgradeMultiplier / (upgradesAmounts[15] / 2));
+                upgradeMultiplier = 1 + (_upgradeButtons[11].UpgradeMultiplier);
 
-                clickers[3]
-                    .GetComponentInParent<ElementsButtons>()
-                    .MultiplyAmountToAdd(upgradeMultiplier);
+                seedManager.MultiplyAmountToAdd(upgradeMultiplier);
+                clickers[0].MultiplyAmountToAddSeedClicker(upgradeMultiplier);
+
+                if (upgradesAmounts[15] >= 99)
+                {
+                    _upgradeButtons[11].gameObject.SetActive(false);
+                }
                 break;
 
             default:

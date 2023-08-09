@@ -195,11 +195,11 @@ public class ElementsManager : MonoBehaviour
 
     void SpawnElementVFX(float amountToShow, bool isHover, Vector3 spawnPos, Color faceColor)
     {
-        GameObject addedElement = Instantiate(_addElementVFX);
+        GameObject addedElement = ObjectPooler.Instance.SpawnFromPool(1);
 
         TextMeshPro elementText = addedElement.GetComponentInChildren<TextMeshPro>();
 
-        elementText.text = "+" + amountToShow;
+        elementText.text = "+" + amountToShow.ToString("N0").Replace(",", ".");
 
         Vector3 spawnPosition;
 
@@ -211,7 +211,7 @@ public class ElementsManager : MonoBehaviour
                 spawnPos.z
             );
 
-            elementText.fontSize *= 1f;
+            elementText.fontSize = 4;
             elementText.faceColor = faceColor;
             elementText.outlineColor = faceColor / 2;
         }
@@ -223,7 +223,7 @@ public class ElementsManager : MonoBehaviour
                 spawnPos.z
             );
 
-            elementText.fontSize *= 0.8f;
+            elementText.fontSize = 3;
             elementText.faceColor = faceColor / 2;
             elementText.outlineColor = faceColor / 4;
         }
@@ -237,7 +237,10 @@ public class ElementsManager : MonoBehaviour
         uiScale = Mathf.Lerp(0, 0.925f, uiScale);
 
         _water.GetChild(1).localScale = new Vector3(_water.GetChild(1).localScale.x, uiScale, 0);
-        _waterText.text = WaterCurrentValue + "/" + WaterMaxValue;
+        _waterText.text =
+            WaterCurrentValue.ToString("N0").Replace(",", ".")
+            + "/"
+            + WaterMaxValue.ToString("N0").Replace(",", ".");
     }
 
     void UpdateSunlightUI()
@@ -251,7 +254,10 @@ public class ElementsManager : MonoBehaviour
             0
         );
 
-        _sunlightText.text = SunlightCurrentValue + "/" + SunlightMaxValue;
+        _sunlightText.text =
+            SunlightCurrentValue.ToString("N0").Replace(",", ".")
+            + "/"
+            + SunlightMaxValue.ToString("N0").Replace(",", ".");
     }
 
     void UpdateElectricityUI()
@@ -265,7 +271,10 @@ public class ElementsManager : MonoBehaviour
             0
         );
 
-        _electricityText.text = ElectricityCurrentValue + "/" + ElectricityMaxValue;
+        _electricityText.text =
+            ElectricityCurrentValue.ToString("N0").Replace(",", ".")
+            + "/"
+            + ElectricityMaxValue.ToString("N0").Replace(",", ".");
     }
 
     public void MultiplySunlightMaxAmount(float multiplier)

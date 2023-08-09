@@ -9,7 +9,7 @@ public class UpgradeButton : MonoBehaviour
     Upgrades upgradeID;
 
     [SerializeField]
-    float price;
+    long _price;
 
     UpgradesManager upgradesManager;
 
@@ -38,6 +38,9 @@ public class UpgradeButton : MonoBehaviour
     AudioClip SFXNoMoney;
 
     [SerializeField]
+    AudioClip SFXHoverButton;
+
+    [SerializeField]
     string upgradeNameToAdd = "Default Upgrade";
 
     [SerializeField]
@@ -51,7 +54,7 @@ public class UpgradeButton : MonoBehaviour
     Animator buttonAnimator;
     SpriteRenderer priceColor;
 
-    private void Start()
+    private void Awake()
     {
         buttonAnimator = gameObject.GetComponent<Animator>();
         upgradesManager = transform.parent.parent.GetComponent<UpgradesManager>();
@@ -63,7 +66,7 @@ public class UpgradeButton : MonoBehaviour
     {
         if (_tutorialMenu.activeSelf)
             return;
-        if (price <= plantManager.GetScore())
+        if (_price <= plantManager.GetScore())
         {
             priceColor.color = new Color(0, 1, 0.5f, 0);
         }
@@ -79,14 +82,28 @@ public class UpgradeButton : MonoBehaviour
             return;
         buttonAnimator.SetBool("isHovering", true);
         upgradeNameAnimator.SetBool("isActive", true);
-        costText.text = price.ToString();
+        costText.text = WritePrice(_price);
         upgradeName.text = upgradeNameToAdd;
         upgradeDescription.text = upgradeDescriptionToAdd;
 
         CursorChanger.Instance.ChangeCursorHand();
+
+        SFXAudio.PlayOneShot(SFXHoverButton, 0.2f);
     }
 
     private void OnMouseExit()
+    {
+        if (_tutorialMenu.activeSelf)
+            return;
+        buttonAnimator.SetBool("isHovering", false);
+        upgradeNameAnimator.SetBool("isActive", false);
+
+        costText.text = "";
+
+        CursorChanger.Instance.ChangeCursorArrow();
+    }
+
+    private void OnDisable()
     {
         if (_tutorialMenu.activeSelf)
             return;
@@ -102,12 +119,14 @@ public class UpgradeButton : MonoBehaviour
     {
         if (_tutorialMenu.activeSelf)
             return;
-        if (price <= plantManager.GetScore())
+        if (_price <= plantManager.GetScore())
         {
-            plantManager.SubstractFromScore((int)price);
+            buttonAnimator.SetTrigger("Clicked");
 
-            price = Mathf.Round(price * 1.25f);
-            costText.text = price.ToString();
+            plantManager.SubstractFromScore((int)_price);
+
+            _price = (long)Mathf.Round(_price * 1.25f);
+            costText.text = WritePrice(_price);
 
             SFXAudio.PlayOneShot(SFXClips[Random.Range(0, SFXClips.Length)], 0.6f);
             upgradesManager.BuyUpgrade(upgradeID);
@@ -116,5 +135,23 @@ public class UpgradeButton : MonoBehaviour
         {
             SFXAudio.PlayOneShot(SFXNoMoney, 0.3f);
         }
+    }
+
+    private string WritePrice(long price)
+    {
+        if (price < 100000)
+        {
+            costText.fontSize = 4;
+        }
+        else if (price < 100000000)
+        {
+            costText.fontSize = 3;
+        }
+        else
+        {
+            costText.fontSize = 2.2f;
+        }
+
+        return price.ToString("N0").Replace(",", ".");
     }
 }

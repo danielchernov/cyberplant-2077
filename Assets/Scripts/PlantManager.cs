@@ -6,13 +6,10 @@ using TMPro;
 public class PlantManager : MonoBehaviour
 {
     [SerializeField]
-    int _score = 0;
+    long _score = 0;
 
     [SerializeField]
     TextMeshProUGUI _scoreText;
-
-    [SerializeField]
-    GameObject _addScoreVFX;
 
     [SerializeField]
     Animator _seedAnimator;
@@ -30,6 +27,9 @@ public class PlantManager : MonoBehaviour
     AudioClip SFXnoResources;
 
     [SerializeField]
+    Animator _flowerAnimator;
+
+    [SerializeField]
     Transform _flower;
 
     [SerializeField]
@@ -44,7 +44,7 @@ public class PlantManager : MonoBehaviour
     [SerializeField]
     int valueToMod = 100;
 
-    public int GetScore()
+    public long GetScore()
     {
         return _score;
     }
@@ -76,21 +76,25 @@ public class PlantManager : MonoBehaviour
 
             if (isClick)
             {
-                SFXaudioSource.PlayOneShot(SFXclick[Random.Range(0, SFXclick.Length)], 1f);
+                SFXaudioSource.PlayOneShot(SFXclick[Random.Range(0, SFXclick.Length)], 0.5f);
                 _seedAnimator.SetTrigger("SeedClicked");
             }
 
             if (_flower.position.y < 2.25f)
             {
-                MoveFlower(0.0001f);
+                MoveFlower(0.0002f);
+            }
+            else if (!_flowerAnimator.GetBool("isAtTop"))
+            {
+                _flowerAnimator.SetBool("isAtTop", true);
             }
 
             _timesClicked++;
 
             if (GetTimesClicked() % valueToMod == 0)
             {
-                _seedManager.MultiplyPointCost(1.7f);
-                valueToMod = (int)Mathf.Round(valueToMod * 1.7f);
+                _seedManager.MultiplyPointCost(2f);
+                valueToMod = (int)Mathf.Round(valueToMod * 2f);
             }
         }
         else if (isClick)
@@ -99,48 +103,58 @@ public class PlantManager : MonoBehaviour
         }
     }
 
-    public void AddToScore(int amountToAdd)
+    public void AddToScore(long amountToAdd)
     {
         _score += amountToAdd;
-        _scoreText.text = _score.ToString();
+        _scoreText.text = WriteScore(_score);
     }
 
     public void SubstractFromScore(int amountToSubstract)
     {
         _score -= amountToSubstract;
-        _scoreText.text = _score.ToString();
+        _scoreText.text = WriteScore(_score);
+    }
+
+    private string WriteScore(long score)
+    {
+        if (score < 100000)
+        {
+            _scoreText.fontSize = 36;
+        }
+        else if (score < 100000000)
+        {
+            _scoreText.fontSize = 32;
+        }
+        else
+        {
+            _scoreText.fontSize = 24;
+        }
+
+        return score.ToString("N0").Replace(",", ".");
     }
 
     public void SpawnScoreVFX(int amountToShow, bool isClick)
     {
-        GameObject addedScore = Instantiate(_addScoreVFX);
+        GameObject addedScore = ObjectPooler.Instance.SpawnFromPool(0);
 
         TextMeshPro scoreText = addedScore.GetComponentInChildren<TextMeshPro>();
 
-        scoreText.text = "+" + amountToShow;
+        scoreText.text = "+" + amountToShow.ToString("N0").Replace(",", ".");
 
         Vector3 spawnPosition;
 
         if (isClick)
         {
-            spawnPosition = new Vector3(
-                addedScore.transform.position.x + Random.Range(-1.5f, -2f),
-                addedScore.transform.position.y + Random.Range(0f, 0.5f),
-                addedScore.transform.position.z
-            );
+            spawnPosition = new Vector3(Random.Range(-1.5f, -2f), Random.Range(0f, 0.5f), 0);
 
-            scoreText.fontSize *= 1f;
+            scoreText.fontSize = 5;
             scoreText.faceColor = new Color(0.2f, 0.2f, 0.2f, 1);
             scoreText.outlineColor = new Color(1, 1, 1, 1);
         }
         else
         {
-            spawnPosition = new Vector3(
-                addedScore.transform.position.x + Random.Range(1.5f, 2f),
-                addedScore.transform.position.y + Random.Range(0f, 0.5f),
-                addedScore.transform.position.z
-            );
-            scoreText.fontSize *= 0.8f;
+            spawnPosition = new Vector3(Random.Range(1.5f, 2f), Random.Range(0f, 0.5f), 0);
+            scoreText.fontSize = 4;
             scoreText.faceColor = new Color(0, 0, 0, 1);
             scoreText.outlineColor = new Color(0.5f, 0.5f, 0.5f, 1);
         }
