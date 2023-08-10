@@ -41,6 +41,8 @@ public class SettingsManager : MonoBehaviour
 
     public void RestartButton()
     {
+        Time.timeScale = 1;
+
         SceneManager.LoadScene(0);
     }
 

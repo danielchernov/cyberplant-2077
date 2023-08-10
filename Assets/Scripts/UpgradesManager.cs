@@ -224,6 +224,10 @@ public class UpgradesManager : MonoBehaviour
                     .GetComponentInParent<ElementsButtons>()
                     .MultiplyAmountToAdd(upgradeMultiplier);
 
+                clickers[1]
+                    .GetComponentInParent<ElementsButtons>()
+                    .MultiplyHoverDuration(upgradeMultiplier);
+
                 if (upgradesAmounts[5] >= 99)
                 {
                     _upgradeButtons[6].gameObject.SetActive(false);
@@ -255,6 +259,10 @@ public class UpgradesManager : MonoBehaviour
                     .GetComponentInParent<ElementsButtons>()
                     .MultiplyAmountToAdd(upgradeMultiplier);
 
+                clickers[2]
+                    .GetComponentInParent<ElementsButtons>()
+                    .MultiplyHoverDuration(upgradeMultiplier);
+
                 if (upgradesAmounts[6] >= 99)
                 {
                     _upgradeButtons[5].gameObject.SetActive(false);
@@ -285,6 +293,10 @@ public class UpgradesManager : MonoBehaviour
                 clickers[3]
                     .GetComponentInParent<ElementsButtons>()
                     .MultiplyAmountToAdd(upgradeMultiplier);
+
+                clickers[3]
+                    .GetComponentInParent<ElementsButtons>()
+                    .MultiplyHoverDuration(upgradeMultiplier);
 
                 if (upgradesAmounts[7] >= 99)
                 {
@@ -523,6 +535,13 @@ public class UpgradesManager : MonoBehaviour
 
                 seedManager.MultiplyAmountToAdd(upgradeMultiplier);
                 clickers[0].MultiplyAmountToAddSeedClicker(upgradeMultiplier);
+                clickers[0].MultiplyTimeBetweenClicks(1.02f);
+
+                upgradeMultiplier = 1 + (_upgradeButtons[11].UpgradeMultiplier * 0.5f);
+
+                clickers[1].MultiplyAmountToAddElementClicker(upgradeMultiplier);
+                clickers[2].MultiplyAmountToAddElementClicker(upgradeMultiplier);
+                clickers[3].MultiplyAmountToAddElementClicker(upgradeMultiplier);
 
                 if (upgradesAmounts[15] >= 99)
                 {

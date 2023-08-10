@@ -44,12 +44,6 @@ public class ElementsManager : MonoBehaviour
 
     public float ElectricityCurrentValue = 100;
 
-    // private void Start()
-    // {
-    //     StartCoroutine(SunlightGiver(1, 1.5f));
-    //     StartCoroutine(WaterTaker(1, 2.5f));
-    // }
-
     void Update()
     {
         if (SunlightCurrentValue < SunlightMaxValue * 0.2f)
@@ -218,8 +212,8 @@ public class ElementsManager : MonoBehaviour
         else
         {
             spawnPosition = new Vector3(
-                spawnPos.x + Random.Range(0.3f, 0.5f),
-                spawnPos.y + Random.Range(0.6f, 0.7f),
+                spawnPos.x + Random.Range(0.35f, 0.55f),
+                spawnPos.y + Random.Range(0.5f, 0.6f),
                 spawnPos.z
             );
 
@@ -301,20 +295,4 @@ public class ElementsManager : MonoBehaviour
         ElectricityMaxValue = (int)Mathf.Round(ElectricityMaxValue * multiplier);
         UpdateElectricityUI();
     }
-
-    // IEnumerator SunlightGiver(int amountToChange, float timeBetweenChanges)
-    // {
-    //     yield return new WaitForSeconds(timeBetweenChanges);
-    //     AddSunlight(amountToChange);
-
-    //     yield return SunlightGiver(amountToChange, timeBetweenChanges);
-    // }
-
-    // IEnumerator WaterTaker(int amountToChange, float timeBetweenChanges)
-    // {
-    //     yield return new WaitForSeconds(timeBetweenChanges);
-    //     UseWater(amountToChange);
-
-    //     yield return WaterTaker(amountToChange, timeBetweenChanges);
-    // }
 }

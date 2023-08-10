@@ -82,7 +82,7 @@ public class PlantManager : MonoBehaviour
 
             if (_flower.position.y < 2.25f)
             {
-                MoveFlower(0.0002f);
+                MoveFlower(0.00013f);
             }
             else if (!_flowerAnimator.GetBool("isAtTop"))
             {
@@ -93,8 +93,8 @@ public class PlantManager : MonoBehaviour
 
             if (GetTimesClicked() % valueToMod == 0)
             {
-                _seedManager.MultiplyPointCost(2f);
-                valueToMod = (int)Mathf.Round(valueToMod * 2f);
+                _seedManager.MultiplyPointCost(1.5f);
+                valueToMod = (int)Mathf.Round(valueToMod * 1.4f);
             }
         }
         else if (isClick)

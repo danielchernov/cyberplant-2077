@@ -105,8 +105,6 @@ public class UpgradeButton : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_tutorialMenu.activeSelf)
-            return;
         buttonAnimator.SetBool("isHovering", false);
         upgradeNameAnimator.SetBool("isActive", false);
 
@@ -125,7 +123,7 @@ public class UpgradeButton : MonoBehaviour
 
             plantManager.SubstractFromScore((int)_price);
 
-            _price = (long)Mathf.Round(_price * 1.25f);
+            _price = (long)Mathf.Round(_price * 1.15f);
             costText.text = WritePrice(_price);
 
             SFXAudio.PlayOneShot(SFXClips[Random.Range(0, SFXClips.Length)], 0.6f);

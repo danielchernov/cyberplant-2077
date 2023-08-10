@@ -18,7 +18,7 @@ public class ClickerManager : MonoBehaviour
     int clickerID = 0;
 
     [SerializeField]
-    int clickerAmount = 1;
+    int _clickerAmount = 1;
 
     [SerializeField]
     TextMeshPro clickerAmountText;
@@ -35,12 +35,14 @@ public class ClickerManager : MonoBehaviour
     [SerializeField]
     int _amountToAddSeedClicker = 1;
 
-    float clickTimer = 0;
-    float timeBetweenClicks = 1f;
+    float _clickTimer = 0;
+
+    [SerializeField]
+    float _timeBetweenClicks = 1f;
 
     void Start()
     {
-        clickerAmountText.text = clickerAmount.ToString();
+        clickerAmountText.text = _clickerAmount.ToString();
     }
 
     private void Update()
@@ -48,7 +50,7 @@ public class ClickerManager : MonoBehaviour
         switch (clickerID)
         {
             case 0:
-                if (clickTimer >= ((timeBetweenClicks / clickerAmount) * 2))
+                if (_clickTimer >= (_timeBetweenClicks / (_clickerAmount * 1f)))
                 {
                     plantManager.ClickSeed(
                         _amountToAddSeedClicker,
@@ -58,12 +60,12 @@ public class ClickerManager : MonoBehaviour
                         false
                     );
 
-                    clickTimer = 0;
+                    _clickTimer = 0;
                 }
 
                 break;
             case 1:
-                if (clickTimer >= ((timeBetweenClicks / clickerAmount) * 2))
+                if (_clickTimer >= (_timeBetweenClicks / (_clickerAmount * 1.5f)))
                 {
                     elementsManager.AddSunlight(
                         _amountToAddElementClicker,
@@ -72,11 +74,11 @@ public class ClickerManager : MonoBehaviour
                         new Color(1, 0.6f, 0, 1)
                     );
 
-                    clickTimer = 0;
+                    _clickTimer = 0;
                 }
                 break;
             case 2:
-                if (clickTimer >= ((timeBetweenClicks / clickerAmount) * 2))
+                if (_clickTimer >= (_timeBetweenClicks / (_clickerAmount * 1.5f)))
                 {
                     elementsManager.AddWater(
                         _amountToAddElementClicker,
@@ -85,11 +87,11 @@ public class ClickerManager : MonoBehaviour
                         new Color(0, 0.6f, 1, 1)
                     );
 
-                    clickTimer = 0;
+                    _clickTimer = 0;
                 }
                 break;
             case 3:
-                if (clickTimer >= ((timeBetweenClicks / clickerAmount) * 2))
+                if (_clickTimer >= (_timeBetweenClicks / (_clickerAmount * 1.5f)))
                 {
                     elementsManager.AddElectricity(
                         _amountToAddElementClicker,
@@ -98,7 +100,7 @@ public class ClickerManager : MonoBehaviour
                         new Color(0.6f, 0, 1, 1)
                     );
 
-                    clickTimer = 0;
+                    _clickTimer = 0;
                 }
 
                 break;
@@ -107,13 +109,13 @@ public class ClickerManager : MonoBehaviour
                 break;
         }
 
-        clickTimer += Time.deltaTime;
+        _clickTimer += Time.deltaTime;
     }
 
     public void AddClicker()
     {
-        clickerAmount++;
-        clickerAmountText.text = clickerAmount.ToString();
+        _clickerAmount++;
+        clickerAmountText.text = _clickerAmount.ToString();
     }
 
     public void MultiplyAmountToAddSeedClicker(float multiplier)
@@ -124,5 +126,10 @@ public class ClickerManager : MonoBehaviour
     public void MultiplyAmountToAddElementClicker(float multiplier)
     {
         _amountToAddElementClicker = (int)Mathf.Round(_amountToAddElementClicker * multiplier);
+    }
+
+    public void MultiplyTimeBetweenClicks(float multiplier)
+    {
+        _timeBetweenClicks = _timeBetweenClicks / multiplier;
     }
 }

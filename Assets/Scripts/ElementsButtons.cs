@@ -176,4 +176,9 @@ public class ElementsButtons : MonoBehaviour
     {
         _amountToAdd = (int)Mathf.Round(_amountToAdd * multiplier);
     }
+
+    public void MultiplyHoverDuration(float multiplier)
+    {
+        _timerDuration = _timerDuration / multiplier;
+    }
 }
